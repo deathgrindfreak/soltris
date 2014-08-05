@@ -3,6 +3,7 @@
 
 #include <stdbool.h>
 
+#include "graphics.h"
 #include "tetrominoes.h"
 #include "tetris.h"
 #include "types.h"

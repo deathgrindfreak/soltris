@@ -17,11 +17,21 @@ typedef enum {
 } tetromino_t;
 
 typedef struct Game {
+	
+	struct RBG {
+		Uint8 r, g, b;
+	} animate_colors[40];
+	
     int current_wait_time;
     int current_score;
 	int current_level;
+	int remove_rows[20];
+	int animate_time;
+	int animate_times;
+	int num_animation_rows;
     bool game_over;
     bool paused;
+	bool animate, remove;
     SDL_Surface *screen;
 	TTF_Font *font;
 	TTF_Font *large_font;

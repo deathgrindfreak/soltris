@@ -36,6 +36,7 @@
 #define BLOCK_SIZE 24
 #define INITIAL_WAIT_TIME 50
 #define MIN_MOVE_TIME 4
+#define ANIMATE_TIME 10
 
 #define BOARD_START 30
 #define BOARD_END (BOARD_START + 10 * BLOCK_SIZE)
@@ -50,5 +51,7 @@ Game game;
 Control input;
 Tetromino *tetromino;
 Tetromino *next;
+
+void init_game();
 
 #endif

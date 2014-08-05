@@ -43,11 +43,9 @@ void add_to_board() {
 /* check_full_row - check if there's a full row */
 void check_full_row() {
 
-	int i, j, row_count = 0, num_rows = 0;
-	int row[20];
-	
+	int i, j, row_count = 0;
 	for (i = 0; i < 20; i++)
-		row[i] = 0;
+		game.remove_rows[i] = 0;
 
 	for (i = 0; i < 20; i++) {
 		for (j = 0; j < 10; j++) {
@@ -55,45 +53,19 @@ void check_full_row() {
 				row_count++;
 		}			
 		
+		/* If there's a full row, flip the remove_row bit, and set remove and animate bools to true */
 		if (row_count == 10) {
-			row[i] = 1;
+			game.remove_rows[i] = 1;
+			game.remove = game.animate = true;
 		}
 
 		row_count = 0;
-	}
-	
-	for (i = 0; i < 20; i++) {
-		if (row[i]) {
-			remove_row(i);
-			num_rows++;
-		}
-	}
-	
-	/* Increment the score if rows were removed */
-	if (num_rows == 1) {
-		game.current_score += 40 * game.current_level; 
-	} else if (num_rows == 2) {
-		game.current_score += 100 * game.current_level; 
-	} else if (num_rows == 3) {
-		game.current_score += 300 * game.current_level; 
-	} else if (num_rows == 4) {
-		game.current_score += 1200 * game.current_level; 
-	}
-	
-	/* Increment the level every 1000 points and speed up the movement */
-	while ((game.current_score / game.current_level) >= 1000) {
-		game.current_level += 1;
-		
-		if (game.current_wait_time > 10)
-			game.current_wait_time -= 3;
 	}
 }
 
 
 /* remove_row - remove a row at a specified y */
 void remove_row(int y) {
-
-	/*animate(y);*/
 	
     int i, j;
 	for (i = y; i > 0; i--) {
@@ -112,6 +84,7 @@ void copy_board(Blocks *board_one, Blocks *board_two) {
 }
 
 
+/* print_board - prints a representation of the current board */
 void print_board() {
 	
 	int i, j;

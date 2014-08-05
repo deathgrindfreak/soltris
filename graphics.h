@@ -3,6 +3,7 @@
 
 #include "SDL/SDL.h"
 
+#include "types.h"
 #include "board.h"
 #include "tetris.h"
 
