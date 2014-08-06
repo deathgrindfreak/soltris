@@ -154,3 +154,25 @@ void check_floating() {
 		}
 	}
 }
+
+
+/* check_game_over - checks if the game is over */
+bool check_game_over() {
+	
+	int i, y, check_index;
+
+	if (tetromino->type == LINE) {
+		y = NEXT_Y + tetromino->offset_y + 25 + BLOCK_SIZE / 2;
+	} else if (tetromino->type == SQUARE) {
+		y = NEXT_Y + tetromino->offset_y + 25;
+	} else {
+		y = NEXT_Y + tetromino->offset_y + 25;
+	}
+	
+	check_index = 10 * (get_min_y(tetromino) + y - START_HEIGHT) / BLOCK_SIZE; 
+	    
+	for (i = 0; i < 10; i++)
+		if (board[check_index + i].type != NO_SHAPE)
+			return true;
+	return false;
+}

@@ -24,7 +24,11 @@
 
 void draw_block(int x, int y, SDL_Color color);
 void draw_tetromino(Tetromino *tetro);
+void draw_trunc_tetromino(Tetromino *tetro);
 void draw_board();
 void draw_score_next_boxes();
+void draw_menu();
+void draw_game_over_menu();
+void draw_arrow();
 
 #endif

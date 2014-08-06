@@ -37,6 +37,10 @@ typedef struct Game {
 	TTF_Font *large_font;
 } Game;
 
+typedef struct MenuArrow {
+	int x, y;
+} MenuArrow;
+
 typedef struct Control {
     bool up, down, left, right;
 } Control;

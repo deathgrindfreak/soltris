@@ -23,5 +23,6 @@ int get_offset_x(Tetromino* tetro);
 void move_tetromino();
 void rotate();
 void print_tetromino(Tetromino *mino);
+bool check_rotation();
 
 #endif

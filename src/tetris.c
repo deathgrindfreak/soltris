@@ -37,7 +37,10 @@ int main(int argv, char **args) {
         get_input();
 
         /* If the game isn't paused */
-        if (!game.paused) {
+        if (!(game.paused || game.game_over)) {
+	        
+	        /* I don't know where else to put this */
+	        arrow.y = arrow.x = 0;
 	        
 			/* Move the tetromino accordingly */
 			move_tetromino();
@@ -45,6 +48,10 @@ int main(int argv, char **args) {
         
         if (!(game.animate || game.remove)) {
 	        
+			/* Check for a game over */
+			if (check_game_over())
+				game.game_over = true;
+			
 			/* Check for full rows */
 			check_full_row();
 			
@@ -81,4 +88,20 @@ void init_game() {
     for (i = 0; i < 20; i++) {
 	    game.remove_rows[i] = 0;
     }
+}
+
+
+/* new_game - inialize a new game */
+void new_game() {
+
+    /* Initialize the board */
+    init_board();
+    
+    /* Create a new tetromino */
+    next = new_tetromino(0);
+    tetromino = new_tetromino(1);
+    assert(next != NULL && tetromino != NULL);
+    
+    /* unpause the game */
+    game.paused = false;
 }

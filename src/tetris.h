@@ -51,7 +51,9 @@ Game game;
 Control input;
 Tetromino *tetromino;
 Tetromino *next;
+MenuArrow arrow;
 
 void init_game();
+void new_game();
 
 #endif

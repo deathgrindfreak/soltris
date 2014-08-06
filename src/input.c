@@ -20,7 +20,15 @@ void get_input() {
                 switch(event.key.keysym.sym) {
 
                     case SDLK_UP:
-                        rotate();
+	                    if (!game.paused) {
+							rotate();
+	                    } else {
+		                    if (arrow.y == 0) {
+			                    arrow.y = 100;
+		                    } else {
+			                    arrow.y -= 50;
+		                    }
+	                    }
                         break;
 
                     case 'k': 
@@ -28,7 +36,15 @@ void get_input() {
                         break;
 
                     case SDLK_DOWN:
-                        input.down = true;
+	                    if (!game.paused) {
+							input.down = true;
+	                    } else {
+		                    if (arrow.y == 100) {
+			                    arrow.y = 0;
+		                    } else {
+			                    arrow.y += 50;
+		                    }
+	                    }
                         break;
 
                     case 'j':
@@ -36,7 +52,15 @@ void get_input() {
                         break;
 
                     case SDLK_LEFT:
-                        input.left = true;
+	                    if (!game.game_over) {
+							input.left = true;
+	                    } else {
+		                    if (arrow.x == 0) {
+			                    arrow.x = 1;
+		                    } else if (arrow.x == 1) {
+			                    arrow.x = 0;
+		                    }
+	                    }
                         break;
 
                     case 'h':
@@ -44,7 +68,15 @@ void get_input() {
                         break;
 
                     case SDLK_RIGHT:
-                        input.right = true;
+	                    if (!game.game_over) {
+							input.right = true;
+	                    } else {
+		                    if (arrow.x == 0) {
+			                    arrow.x = 1;
+		                    } else if (arrow.x == 1) {
+			                    arrow.x = 0;
+		                    }
+	                    }
                         break;
 
                     case 'l':
@@ -57,6 +89,25 @@ void get_input() {
 
 					case SDLK_ESCAPE:
 						game.paused = !game.paused;
+						break;
+						
+					case SDLK_RETURN:
+						if (game.paused) {
+							if (arrow.y == 0) {
+								new_game();
+							} else if (arrow.y == 50) {
+								/* high score stuff */
+							} else if (arrow.y == 100) {
+								exit(0);
+							}
+						} else if (game.game_over) {
+							if (arrow.x == 0) {
+								game.game_over = false;
+								new_game();
+							} else if (arrow.x == 1) {
+								exit(0);
+							}
+						}
 						break;
 
                     default:

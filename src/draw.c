@@ -117,12 +117,25 @@ void draw() {
     draw_string(level, LEVEL_X + 55, LEVEL_Y + 37, game.font, true, false);
 
     /* Draw the tetromino */
-    draw_tetromino(next);
-    draw_tetromino(tetromino);
+	draw_tetromino(next);
+		
+    if (!game.game_over) {
+		draw_tetromino(tetromino);
+    } else {
+	    draw_trunc_tetromino(tetromino);
+    }
     
-    /* if the game is paused, draw the paused string */
-    if (game.paused)
-	    draw_string("Game Paused", game.screen->w / 2, game.screen->h / 2, game.large_font, true, true);
+    /* if the game is paused, draw the menu */
+    if (game.paused) {
+	    draw_menu();
+	    draw_arrow();
+    }
+    
+    if (game.game_over) {
+	    draw_game_over_menu();
+	    draw_arrow();
+    }
+
 
     /* Flip the buffer */
     SDL_Flip(game.screen);

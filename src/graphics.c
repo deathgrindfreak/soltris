@@ -36,6 +36,24 @@ void draw_tetromino(Tetromino *tetro) {
 }
 
 
+/* draw_trunc_tetromino - draws a truncated tetromino for the game
+   over */
+void draw_trunc_tetromino(Tetromino *tetro) {
+
+	int i, test_index;
+    for (i = 0; i < 4; i++) {
+	    
+	    test_index = (tetro->x + tetro->coords[i][0] - BOARD_START) / BLOCK_SIZE;
+	    
+	    if (tetro->coords[i][1] == get_min_y(tetro) && board[test_index].type == NO_SHAPE) {
+			draw_block(tetro->x + tetro->coords[i][0] * BLOCK_SIZE, 
+			           tetro->y + (tetro->coords[i][1] + 1) * BLOCK_SIZE, 
+					   tetro->color);
+	    }
+    }
+}
+
+
 /* draw_board - draw the board */
 void draw_board() {
 
@@ -84,4 +102,47 @@ void draw_score_next_boxes() {
                                                    colors[0][0], 
                                                    colors[0][1], 
                                                    colors[0][2]));
+}
+
+
+/* draw_menu - draw the game menu */
+void draw_menu() {
+	draw_string("Game Paused", game.screen->w / 2, game.screen->h / 2 - 100, game.large_font, true, true);
+	draw_string("New Game", game.screen->w / 2, game.screen->h / 2 - 50, game.large_font, true, true);
+	draw_string("High Scores", game.screen->w / 2, game.screen->h / 2, game.large_font, true, true);
+	draw_string("Quit", game.screen->w / 2, game.screen->h / 2 + 50, game.large_font, true, true);
+}
+
+
+/* draw_game_over_menu - draw the game over menu */
+void draw_game_over_menu() {
+	draw_string("Game Over!", game.screen->w / 2, game.screen->h / 2 - 50, game.large_font, true, true);
+	draw_string("New Game?", game.screen->w / 2, game.screen->h / 2, game.font, true, true);
+	draw_string("Yes", game.screen->w / 2 - 60, game.screen->h / 2 + 30, game.font, false, true);
+	draw_string("No", game.screen->w / 2 + 35, game.screen->h / 2 + 30, game.font, false, true);
+}
+
+
+/* draw_arrow - draw the menu arrow */
+void draw_arrow() {
+	
+	if (game.paused) {
+		if (arrow.y == 0) {
+			draw_string("->", game.screen->w / 2 - 130, game.screen->h / 2 - 50 + arrow.y, game.large_font, false, true);
+		} else if (arrow.y == 50) {
+			draw_string("->", game.screen->w / 2 - 150, game.screen->h / 2 - 50 + arrow.y, game.large_font, false, true);
+		} else if (arrow.y == 100) {
+			draw_string("->", game.screen->w / 2 - 80, game.screen->h / 2 - 50 + arrow.y, game.large_font, false, true);
+		} else {
+			printf("Invalid arrow value!!!");
+		}
+	} else if (game.game_over) {
+		if (arrow.x == 0) {
+			draw_string("->", game.screen->w / 2 - 85, game.screen->h / 2 + 30, game.font, false, true);
+		} else if (arrow.x == 1) {
+			draw_string("->", game.screen->w / 2 + 10, game.screen->h / 2 + 30, game.font, false, true);
+		} else {
+			printf("Invalid arrow value!!!");
+		}
+	}
 }

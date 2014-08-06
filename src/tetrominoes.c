@@ -1,6 +1,7 @@
 #include "tetrominoes.h"
 
 
+/* Coordinates for the tetrominoes */
 static int coordinates[8][4][2] = {
     { {0, 0}, { 0, 0}, { 0,  0}, { 0,  0} },    /* no shape */
     { {0, 0}, {-1, 0}, { 1,  0}, { 2,  0} },    /* line */
@@ -12,6 +13,7 @@ static int coordinates[8][4][2] = {
     { {0, 0}, { 0, -1}, { -1, -1}, { 1,  0} },    /* Z shape */
 };
 
+/* Colors for the tetrominoes */
 int colors[8][3] = {
     /* {240, 232, 213},  no shape */
 	{0  , 43 , 54 },  /* no shape */
@@ -207,7 +209,7 @@ void move_tetromino() {
     }
     
     /* If the tetromino has reached the end of the board */
-    if (check_collision(0, 1)) {
+    if (check_collision(0, 1) && !game.game_over) {
 	    
 	    /* Add the tetromino to the board */
 	    add_to_board();
@@ -231,7 +233,10 @@ void rotate() {
 
     int i, temp;
 
-    if (tetromino->type != SQUARE) {
+    /* make sure that the tetromino isn't a square and that the
+    rotation won't force the tetromino above the upper limit of the
+    board */
+    if (tetromino->type != SQUARE && check_rotation()) {
 
         /* rotate the tetromino */
         for (i = 0; i < 4; i++) {
@@ -294,4 +299,27 @@ void print_tetromino(Tetromino *mino) {
 	}
 	
 	printf("color: (%d, %d, %d)\n", mino->color.r, mino->color.g, mino->color.b);
+}
+
+
+/* check_rotation - checks to see if the rotation will put the
+   tetromino above the top of the board */
+bool check_rotation() {
+
+	int i;
+	
+	if (tetromino->type != LINE) {
+		
+		for (i = 0; i < 4; i++)
+			if (-1 * tetromino->coords[i][0] + tetromino->y < START_HEIGHT)
+				return false;
+		return true;
+	
+	} else {
+
+		for (i = 0; i < 4; i++)
+			if (-1 * tetromino->coords[i][0] + tetromino->y - BLOCK_SIZE < START_HEIGHT)
+				return false;
+		return true;
+	}
 }
