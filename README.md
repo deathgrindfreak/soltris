@@ -8,7 +8,7 @@ tetrominoes and the board correspond to the [Solarized](http://ethanschoonover.c
 
 Also, this project is still a work in progress and is buggy as hell, so feel free to add to it if you like.
 
-![SOLTris](demo.png)
+![SOLTris](demo.png?raw=true "SOLTris")
 
 
 Installation
@@ -21,9 +21,9 @@ If you wish to install the game, first clone the repo:
 
 You'll also need the following libraries:
 
-    [SDL 1.2](http://libsdl.org/download-1.2.php)
-    [SDL_ttf 2.0](http://libsdl.org/projects/SDL_ttf)
-    [SDL_mixer 1.2](http://libsdl.org/projects/SDL_mixer)
+[SDL 1.2](http://libsdl.org/download-1.2.php)
+[SDL_ttf 2.0](http://libsdl.org/projects/SDL_ttf)
+[SDL_mixer 1.2](http://libsdl.org/projects/SDL_mixer)
 
 In Debian or Ubuntu this should install them:
 
@@ -43,9 +43,10 @@ in Windows if you're interested in trying it out.
 Gameplay
 --------
 ####Movement
-left/down/up/right - hjkl or arrow keys
 
-pause - <esc> or p
+    left/down/up/right - hjkl or arrow keys
+
+    pause - esc or p
 
 
 License
