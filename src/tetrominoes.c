@@ -195,7 +195,7 @@ void move_tetromino() {
     }
 
     if (input.left && !check_collision(-1, 0)) {
-
+	    
         if (tetromino->move_time >= MIN_MOVE_TIME) { 
             tetromino->x -= BLOCK_SIZE;
             tetromino->move_time = 0;

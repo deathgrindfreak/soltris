@@ -14,7 +14,7 @@ debug: $(PROG)
 include Sourcedeps
 
 # compiling other source files.
-%.o: %.c %.h  types.h
+%.o: src/%.c src/%.h  src/types.h
 	$(CXX) $(CFLAGS) -c -s $<
 
 # linking the program.

@@ -47,6 +47,9 @@ int main(int argv, char **args) {
 	        
 			/* Check for full rows */
 			check_full_row();
+			
+			/* Check for floating tetrominoes */
+			check_floating();
         }
 
         /* Draw the tetromino */

@@ -99,3 +99,58 @@ void print_board() {
 	}
 	printf("\n");
 }
+
+
+/* check_floating - checks for floating pieces on a board */
+void check_floating() {
+
+	int i, j, ht;
+	for (i = 0; i < 19; i++) {
+		for (j = 0; j < 10; j++) {
+
+			if (board[10 * i + j].type != NO_SHAPE) {
+
+				if (j > 0 && j < 9) {
+
+					if (board[10 * i + (j + 1)].type == NO_SHAPE && 
+						board[10 * i + (j - 1)].type == NO_SHAPE && 
+						board[10 * (i + 1) + j].type == NO_SHAPE) {
+
+						ht = i;
+
+						while (ht < 19 && board[10 * (ht + 1) + j].type == NO_SHAPE) {
+							board[10 * (ht + 1) + j].type = board[10 * ht + j].type;
+							board[10 * ht + j].type = NO_SHAPE;
+						}
+					}
+
+				} else if (j == 0) {
+
+					if (board[10 * i + (j + 1)].type == NO_SHAPE && 
+						board[10 * (i + 1) + j].type == NO_SHAPE) {
+
+						ht = i;
+
+						while (ht < 19 && board[10 * (ht + 1) + j].type == NO_SHAPE) {
+							board[10 * (ht + 1) + j].type = board[10 * ht + j].type;
+							board[10 * ht + j].type = NO_SHAPE;
+						}
+					}
+
+				} else if (j == 9) {
+
+					if (board[10 * i + (j - 1)].type == NO_SHAPE && 
+						board[10 * (i + 1) + j].type == NO_SHAPE) {
+
+						ht = i;
+
+						while (ht < 19 && board[10 * (ht + 1) + j].type == NO_SHAPE) {
+							board[10 * (ht + 1) + j].type = board[10 * ht + j].type;
+							board[10 * ht + j].type = NO_SHAPE;
+						}
+					}
+				}
+			}
+		}
+	}
+}

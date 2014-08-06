@@ -16,5 +16,6 @@ void check_full_row();
 void remove_row(int y);
 void copy_board(Blocks *board_one, Blocks *board_two);
 void print_board();
+void check_floating();
 
 #endif
