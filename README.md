@@ -21,9 +21,7 @@ If you wish to install the game, first clone the repo:
 
 You'll also need the following libraries:
 
-[SDL 1.2](http://libsdl.org/download-1.2.php)
-[SDL_ttf 2.0](http://libsdl.org/projects/SDL_ttf)
-[SDL_mixer 1.2](http://libsdl.org/projects/SDL_mixer)
+[SDL 1.2](http://libsdl.org/download-1.2.php), [SDL_ttf 2.0](http://libsdl.org/projects/SDL_ttf) and [SDL_mixer 1.2](http://libsdl.org/projects/SDL_mixer)
 
 In Debian or Ubuntu this should install them:
 
@@ -36,7 +34,7 @@ Then simply build and run:
 
 
 ####Windows
-I haven't tested on Windows yet, but take a look at this [tutorial]() on installing SDL
+I haven't tested on Windows yet, but take a look at this [tutorial](http://lazyfoo.net/tutorials/SDL/01_hello_SDL/windows/index.php) on installing SDL
 in Windows if you're interested in trying it out.
 
 
