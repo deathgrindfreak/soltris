@@ -6,7 +6,7 @@ and hone my C programming skills.
 In an attempt to be at least a little original, I've made the colors of the
 tetrominoes and the board correspond to the [Solarized](http://ethanschoonover.com/solarized) dark color scheme
 
-Also, this project is still a work in progress and is buggy as hell, so feel free to add to it if you like.
+Also, this project is still a work in progress and is buggy as hell, so feel free to add to it if you'd like.
 
 ![SOLTris](demo.png?raw=true "SOLTris")
 
